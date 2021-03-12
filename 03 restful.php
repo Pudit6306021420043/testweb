@@ -14,9 +14,20 @@
             console.log(this.readyState);
             if(this.readyState==4 && this.status==200){
             console.log(this.responseText);
-            let data = JSON.parse(this.responseText);
-            console.log(data); 
-                   }
+            my = JSON.parse(this.responseText);
+            m = document.getElementById("out");
+            text="<table border='1'>";
+            for(i=0;i<my.length;i++){
+                text+="<tr>";
+                    for(key in my[i]){
+                       text+="<td>"+my[i][key]+"</td>";
+                    }
+                    text+="</tr>";
+                }
+                text+="</table>";
+                alert(text);
+                m.innerHTML+= text;
+            }
         }
             xhttp.open("GET","02 rest.php",true);
             xhttp.send();
