@@ -14,13 +14,22 @@
                     $this->text_debug("database Connect success");
                 }
             }
-        
+
+        public function sel_data($sql){
+            $result = $this->db->query($sql);
+            $this->text_debug($sql);
+            $data=$result->fetch_all(MYSQLI_ASSOC);
+            if($this->debug_mode){
+                echo "<pre>";
+                echo print_r($data);
+                echo "</pre>";
+            }
+            return $data;
+        }
 
         public function query($sql){
             $result = $this->db->query($sql);
-            $data = $result->fetch_all(MYSQLI_ASSOC);
-            if($this->debug_mode==true)print_r($data);
-            return $data;
+            return $result;
         }
         public function close(){
             $this->db->close();
